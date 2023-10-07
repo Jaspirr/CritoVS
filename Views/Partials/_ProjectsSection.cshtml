@@ -1,0 +1,61 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+<section class="business-section">
+  <div class="business-container">
+    <h2 class="project-section-subtitle">Project & Case Studies</h2>
+    <h1 mt2>Let’s Looks Our Global Projects</h1>
+    <div class="row">
+      <div class="img-container">
+          @{
+                var projectsImage = Model.Value<MediaWithCrops>("projectsImage");
+                if (projectsImage != null)
+                {
+                    <img src="@projectsImage.MediaUrl()" alt="">
+                }
+            }
+       
+        <p>Grow your business</p>
+        <hr class="underline">
+      </div>
+      <div class="img-container">
+        @{
+            var projectsImage2 = Model.Value<MediaWithCrops>("projectsImage2");
+            if (projectsImage2 != null)
+            {
+                <img src="@projectsImage2.MediaUrl()" alt="">
+            }
+        }
+        <p>Why your client needs a responsive website</p>
+        <hr class="underline">
+      </div>
+    </div>
+    <div class="row">
+      <div class="img-container">
+         @{
+            var projectsImage3 = Model.Value<MediaWithCrops>("projectsImage3");
+            if (projectsImage3 != null)
+            {
+                <img src="@projectsImage3.MediaUrl()" alt="">
+            }
+        }
+        <p>Educate your employees to get better results</p>
+        <hr class="underline">
+      </div>
+      <div class="img-container">
+        @{
+            var projectsImage4 = Model.Value<MediaWithCrops>("projectsImage4");
+            if (projectsImage4 != null)
+            {
+                <img src="@projectsImage4.MediaUrl()" alt="">
+            }
+        }
+        <p>Business Insights is a important piece of your business</p>
+        <hr class="underline">
+      </div>
+    </div>
+    <a href="#" class="btn-theme-black">All Recent Projects &nbsp;<i class="fa-solid fa-arrow-up-right"></i></a>
+  </div>
+</section>

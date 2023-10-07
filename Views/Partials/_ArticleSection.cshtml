@@ -1,0 +1,68 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Services;
+@using Umbraco.Cms.Core.Models.PublishedContent;
+
+
+@{
+	Layout = null;
+	var itemsPerPage = 6;
+	var pageNumber = 1;
+	
+	if (!int.TryParse(Context.Request.Query["page"], out pageNumber))
+	    pageNumber = 1;
+	    
+	    
+	var selection = Umbraco?.Content(Guid.Parse("66a5a4de-040b-4ca7-b7f7-563233d67ca3"))?
+        .ChildrenOfType("articleItemPage")?
+        .Where(x => x.IsVisible())
+        .OrderByDescending(x => x.CreateDate).ToList();
+    
+    
+    var totalItems = selection?.Count() ?? 0;
+    var pagedItems = selection?.Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage);   
+
+}
+ <section class="articles-section">
+      <div class="articles-container">
+        <div class="header-wrapper">
+          <div class="title-wrapper">
+            <h3 class="red-title">Article & News</h3>
+            <h1 class="main-title">Get Every Single Articles & News</h1>
+          </div>
+          <a href="/news" class="btn-theme-white">Browse Articles &nbsp;<i class="fa-solid fa-arrow-up-right"></i></a>
+        </div>
+        <div class="content-wrapper">
+         
+             @if(pagedItems != null ) 
+                {
+                	@foreach (var item in pagedItems!)
+                	{
+                	    var url = item.Url();
+                	    var date = item.CreateDate;
+                	    var image = item.Value<IPublishedContent>("newsImage");
+                	    var category = item.Value("newsCategory");
+                	    var title = item.Name();
+                	    var preamble = item.Value("newsPreamble");
+                	    
+                	    <a href="@url"class="article-card" data-article="1">
+                            <img class="article-card-img" src="@image.Url()" alt="Woman in Classroom">
+                            <div class="article-content">
+                                <div class="date-box"><div style="font-weight: 700; font-size: 20px;">@date.ToString("dd")</div><div style="font-weight: 200;">@date.ToString("MMM")</div></div>
+                                <div class="tag">@category</div>
+                                <h2 class="article-title">@item.Name</h2>
+                                <p class="placeholder-text">@preamble</p>
+                            </div>    
+                        </a>
+                	}
+                 } 
+        </div>
+      <div class="dot-container">
+        <span class="dot" data-page="1"></span>
+        <span class="dot" data-page="2"></span>
+        <span class="dot" data-page="3"></span>
+        <span class="dot" data-page="4"></span>
+        <span class="dot" data-page="5"></span>
+        </div>
+</section>

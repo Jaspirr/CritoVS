@@ -1,0 +1,55 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models
+
+ <section class="why-choose-us">
+      <div class="container">
+        <div class="why-choose-us-wrapper"> 
+          <div class="why-choose-us-content">
+            <h4 class="why-section-subtitle">Why Choose Us</h4>
+            <h2 class="why-main-title">Why We Are The Best Business Consulting Agency</h2>
+            <div class="why-cards">
+              <div class="why-card">
+                <a href="#" class="round-btn-icon"><i class="fa-regular fa-thumbs-up"></i></a>
+                <div class="why-card-content">
+                  <h3>Process Excellence</h3>
+                  <p class="why-card-subtitle">Lorem, ipsum dolor sit amet consectetur.</p>
+                </div>
+              </div>
+              <div class="why-card">
+                <a href="#" class="round-btn-icon"><i class="fa-solid fa-chess-board"></i></a>
+                <div class="why-card-content">
+                  <h3>Strategic Planning</h3>
+                  <p class="why-card-subtitle">Lorem, ipsum dolor sit amet consectetur.</p>
+                </div>
+              </div>
+              <div class="why-card">
+                <a href="#" class="round-btn-icon"><i class="fa-solid fa-pen-ruler"></i></a>
+                <div class="why-card-content">
+                  <h3>Experience Design</h3>
+                  <p class="why-card-subtitle">Lorem, ipsum dolor sit amet consectetur.</p>
+                </div>
+              </div>
+              <div class="why-card">
+                <a href="#" class="round-btn-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></a>
+                <div class="why-card-content">
+                  <h3>Artificial Inteligence</h3>
+                  <p class="why-card-subtitle">Lorem, ipsum dolor sit amet consectetur.</p>
+                </div>
+              </div>
+              <!-- Repeat the .why-card structure for more cards -->
+            </div>
+          </div>
+        <div class="why-image-wrapper">
+           @{
+                var whyUsImage = Model.Value<MediaWithCrops>("whyUsImage");
+                if (whyUsImage != null)
+                {
+                    <img class="why-image" src="@whyUsImage.MediaUrl()" alt="">
+                }
+            }
+        </div>
+      </div>
+    </div>
+</section>
