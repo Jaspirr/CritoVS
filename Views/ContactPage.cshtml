@@ -52,11 +52,16 @@
         @using (Html.BeginUmbracoForm("Index", "Contacts", FormMethod.Post))
         {
             <div asp-validation-summaty="ModelOnly"></div>
-            
-            <input asp-for="@contactForm.Name" type="text" placeholder="Name*">
-            <input asp-for="@contactForm.Email" type="email" placeholder="Email*">
-            <textarea asp-for="@contactForm.Message" placeholder="Your Message*"></textarea>
 
+            <span asp-validation-for="@contactForm.Name" class="text-danger"></span>
+            <input asp-for="@contactForm.Name" type="text" placeholder="Name*">
+            
+            <span asp-validation-for="@contactForm.Email" class="text-danger"></span>
+            <input asp-for="@contactForm.Email" type="email" placeholder="Email*">
+            
+            <span asp-validation-for="@contactForm.Message" class="text-danger"></span>
+            <textarea asp-for="@contactForm.Message" placeholder="Your Message*"></textarea>
+           
             <div class="d-grid">
                 <button type="submit" class="btn-theme-wide">Send Message <i class="fa-solid fa-arrow-up-right"></i></button>
             </div>
